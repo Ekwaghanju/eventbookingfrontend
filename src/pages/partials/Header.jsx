@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext.jsx';
 import './Header.css';
 
 const NAV_LINKS = [
@@ -11,6 +13,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const drawerRef = useRef(null);
   const menuButtonRef = useRef(null);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   // Lock body scroll while drawer is open
   useEffect(() => {
@@ -44,23 +48,49 @@ export default function Header() {
     }
   }, [open]);
 
+  const handleSignOut = () => {
+    logout();
+    setOpen(false);
+    navigate('/');
+  };
+
   return (
     <>
       <header className="site-header">
         <div className="site-header-inner">
-          <a href="/" className="logo" aria-label="Admit One home">
+          <Link to="/" className="logo" aria-label="Admit One home">
             <span className="logo-mark" aria-hidden="true">EBP</span>
             <span className="logo-text">Event Booking Platform</span>
-          </a>
+          </Link>
 
           <nav className="site-nav" aria-label="Main">
             {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href}>{l.label}</a>
+              <Link key={l.href} to={l.href}>{l.label}</Link>
             ))}
           </nav>
 
           <div className="site-header-actions">
-            <a href="/organizer/login" className="nav-organizer">Organizer login</a>
+            {user ? (
+              <div className="nav-user">
+                <span className="nav-avatar" aria-hidden="true">
+                  {user.name?.[0]?.toUpperCase() ?? 'U'}
+                </span>
+                <span className="nav-username">{user.name}</span>
+                <button
+                  type="button"
+                  className="nav-organizer"
+                  onClick={handleSignOut}
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="nav-link-plain">Sign in</Link>
+                <Link to="/organizer/login" className="nav-organizer">Organizer login</Link>
+              </>
+            )}
+
             <button
               ref={menuButtonRef}
               className="nav-menu"
@@ -108,11 +138,24 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Signed-in strip */}
+        {user && (
+          <div className="drawer-user">
+            <span className="nav-avatar" aria-hidden="true">
+              {user.name?.[0]?.toUpperCase() ?? 'U'}
+            </span>
+            <div className="drawer-user-body">
+              <strong>{user.name}</strong>
+              <span>{user.email}</span>
+            </div>
+          </div>
+        )}
+
         <nav className="drawer-nav" aria-label="Mobile">
           {NAV_LINKS.map((l) => (
-            <a
+            <Link
               key={l.href}
-              href={l.href}
+              to={l.href}
               className="drawer-link"
               onClick={() => setOpen(false)}
             >
@@ -120,25 +163,42 @@ export default function Header() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" />
               </svg>
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="drawer-footer">
-          <a
-            href="/organizer/login"
+          {user ? (
+            <button
+              type="button"
+              className="drawer-cta"
+              onClick={handleSignOut}
+            >
+              Sign out
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="drawer-cta"
+              onClick={() => setOpen(false)}
+            >
+              Sign in
+            </Link>
+          )}
+          <Link
+            to="/organizer/login"
             className="drawer-cta"
             onClick={() => setOpen(false)}
           >
             Organizer login
-          </a>
-          <a
-            href="/events"
+          </Link>
+          <Link
+            to="/events"
             className="drawer-cta drawer-cta-primary"
             onClick={() => setOpen(false)}
           >
             Browse events
-          </a>
+          </Link>
         </div>
       </aside>
     </>

@@ -104,6 +104,7 @@
   letter-spacing: -0.02em;
   margin: 0;
   max-width: 22ch;
+  color: var(--ink);
 }
 
 .event-meta {
@@ -141,6 +142,7 @@
 .event-block h2 {
   font-size: clamp(18px, 2.4vw, 22px);
   margin-bottom: var(--space-2);
+  color: var(--ink);
 }
 .event-block p {
   color: var(--ink-soft);

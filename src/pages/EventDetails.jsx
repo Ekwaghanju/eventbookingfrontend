@@ -53,6 +53,8 @@ function ArrowLeft() {
   );
 }
 
+
+
 function RelatedCard({ event }) {
   return (
     <Link to={`/events/${event.id}`} className="related-card">
@@ -209,7 +211,7 @@ export default function EventDetails() {
                   <li><PinIcon /> {event.venue}</li>
                 </ul>
 
-                <Link to={`/checkout/${event.id}`} className="btn btn-primary btn-block">
+                <Link to={`/checkout/${event.id}`} state={{ event }} className="btn btn-primary btn-block">
                   Get tickets
                 </Link>
 

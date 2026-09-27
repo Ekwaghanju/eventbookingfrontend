@@ -106,6 +106,7 @@ button { font-family: inherit; }
   font-size: clamp(34px, 6vw, 64px);
   line-height: 1.05;
   max-width: 16ch;
+  color: var(--ink);
 }
 
 .hero-copy p {
@@ -205,6 +206,7 @@ button { font-family: inherit; }
 
 .section-heading h2 {
   font-size: clamp(20px, 3vw, 28px);
+  color: var(--ink);
 }
 
 .section-heading a {
