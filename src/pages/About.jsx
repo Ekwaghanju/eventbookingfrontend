@@ -89,7 +89,7 @@ export default function About() {
               We make it easy to find <em>something worth leaving the house for.</em>
             </h1>
             <p className="about-lede">
-              Admit One is a small ticketing platform built in Lagos, for the people who
+              EBP is a small ticketing platform built in Lagos, for the people who
               organize events and the people who show up. No clutter, no runaround, no
               accounts you don't need.
             </p>
@@ -134,7 +134,7 @@ export default function About() {
                 buttons. One clear price. A ticket that actually arrives in your inbox.
               </p>
               <p>
-                Admit One is that sketch, built out. We're still small, still based in
+                EBP is that sketch, built out. We're still small, still based in
                 Lagos, and still annoyed every time a checkout flow makes us create an
                 account we'll never use again.
               </p>

@@ -2,12 +2,12 @@ export const TERMS = {
   title: 'Terms of Service',
   updated: 'October 1, 2025',
   intro:
-    'These terms govern your use of Admit One. By browsing events or buying a ticket, you agree to them. If you do not agree, please do not use the platform.',
+    'These terms govern your use of Event Booking Platform. By browsing events or buying a ticket, you agree to them. If you do not agree, please do not use the platform.',
   sections: [
     {
-      heading: '1. About Admit One',
+      heading: '1. About Event Booking Platform',
       paragraphs: [
-        'Admit One is a ticketing platform that lets organizers list events and lets buyers purchase tickets. We are not the organizer of any event listed on the platform unless explicitly stated.',
+        'Event Booking Platform is a ticketing platform that lets organizers list events and lets buyers purchase tickets. We are not the organizer of any event listed on the platform unless explicitly stated.',
         'Each event page identifies the organizer responsible for that event. Any questions about the event itself — lineup, venue, refunds — should be directed to them.',
       ],
     },
@@ -21,7 +21,7 @@ export const TERMS = {
     {
       heading: '3. Buying tickets',
       paragraphs: [
-        'When you place an order, you enter into a direct agreement with the event organizer. Admit One processes the payment and issues the ticket on their behalf.',
+        'When you place an order, you enter into a direct agreement with the event organizer. EBP processes the payment and issues the ticket on their behalf.',
         'Tickets are held for a limited time during checkout. If the hold expires, the tickets are released and may be purchased by someone else.',
         'Prices are shown in Nigerian Naira (₦) and include any platform service fee, which is displayed at checkout before you confirm.',
       ],
@@ -49,14 +49,14 @@ export const TERMS = {
     {
       heading: '6. Organizer responsibilities',
       paragraphs: [
-        'If you list events on Admit One, you are responsible for the accuracy of the event details, for honouring the tickets sold, and for complying with all applicable laws and regulations.',
+        'If you list events on EBP, you are responsible for the accuracy of the event details, for honouring the tickets sold, and for complying with all applicable laws and regulations.',
         'Admit One may remove any listing that violates these terms or that we reasonably believe is fraudulent.',
       ],
     },
     {
       heading: '7. Limitation of liability',
       paragraphs: [
-        'To the fullest extent permitted by law, Admit One is not liable for indirect, incidental, or consequential losses arising from your use of the platform or from any event you attend.',
+        'To the fullest extent permitted by law, EBP is not liable for indirect, incidental, or consequential losses arising from your use of the platform or from any event you attend.',
         'Our total liability for any claim relating to a ticket purchase is limited to the amount you paid for that ticket.',
       ],
     },

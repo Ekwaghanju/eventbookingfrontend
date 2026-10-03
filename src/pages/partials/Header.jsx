@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext.jsx';
+import { useOrganizerAuth } from '../../auth/OrganizerAuthContext.jsx';
 import './Header.css';
 
 const NAV_LINKS = [
-  { href: '/events', label: 'Browse' },
+  { href: '/organizer/dashboard', label: 'Dashboard' },
   { href: '/orders', label: 'My tickets' },
   { href: '/about', label: 'About' },
 ];
@@ -14,7 +15,10 @@ export default function Header() {
   const drawerRef = useRef(null);
   const menuButtonRef = useRef(null);
   const { user, logout } = useAuth();
+  const { organizer, logout: logoutOrg } = useOrganizerAuth();
   const navigate = useNavigate();
+  console.log(organizer, user);
+  
 
   // Lock body scroll while drawer is open
   useEffect(() => {
@@ -49,7 +53,11 @@ export default function Header() {
   }, [open]);
 
   const handleSignOut = () => {
-    logout();
+    if (organizer) {
+      logoutOrg();
+    } else {
+      logout();
+    }
     setOpen(false);
     navigate('/');
   };
@@ -85,10 +93,27 @@ export default function Header() {
                 </button>
               </div>
             ) : (
+              organizer ? (
+                <div className="nav-user">
+                <span className="nav-avatar" aria-hidden="true">
+                  {organizer.name?.[0]?.toUpperCase() ?? 'O'}
+                </span>
+                <span className="nav-username">{organizer.name}</span>
+                <button
+                  type="button"
+                  className="nav-organizer"
+                  onClick={handleSignOut}
+                >
+                  Sign out
+                </button>
+              </div>
+                ) : (
+
               <>
                 <Link to="/login" className="nav-link-plain">Sign in</Link>
                 <Link to="/organizer/login" className="nav-organizer">Organizer login</Link>
               </>
+                )
             )}
 
             <button
